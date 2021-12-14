@@ -1,24 +1,266 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="BoardGameClub" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsBuildings="NO" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vaf-cg-t3e">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To place a new marker press and hold on any location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C99-jv-NTl">
+                                <rect key="frame" x="20" y="801" width="374" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="C99-jv-NTl" firstAttribute="centerX" secondItem="Vaf-cg-t3e" secondAttribute="centerX" id="Ckp-aB-5qx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vaf-cg-t3e" secondAttribute="trailing" id="Fhq-D2-zlG"/>
+                            <constraint firstItem="C99-jv-NTl" firstAttribute="leading" secondItem="Vaf-cg-t3e" secondAttribute="leading" constant="20" id="loz-et-x3d"/>
+                            <constraint firstAttribute="bottom" secondItem="Vaf-cg-t3e" secondAttribute="bottom" id="mfi-9f-RRe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="C99-jv-NTl" secondAttribute="bottom" constant="20" id="v5g-aV-HXs"/>
+                            <constraint firstItem="Vaf-cg-t3e" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="vvY-Xz-8fJ"/>
+                            <constraint firstItem="C99-jv-NTl" firstAttribute="trailing" secondItem="Vaf-cg-t3e" secondAttribute="trailing" constant="-20" id="z3C-dG-Tcl"/>
+                            <constraint firstItem="Vaf-cg-t3e" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zmy-oy-LuQ"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="HAH-il-RaZ">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="questionmark.circle" catalog="system" id="TaR-oF-uv3">
+                            <connections>
+                                <action selector="hintButtonTapped:" destination="BYZ-38-t0r" id="McE-c0-xzn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="Vaf-cg-t3e" id="JEh-RV-XCR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1460.8695652173915" y="83.705357142857139"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="jaD-nW-jR6">
+            <objects>
+                <viewController storyboardIdentifier="GameViewController" id="GJG-A6-GfA" customClass="GameViewController" customModule="BoardGameClub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A3j-RM-X1k">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="bmf-vu-hlL">
+                                <rect key="frame" x="20" y="319.5" width="374" height="267.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Fpp-hX-uW0">
+                                        <rect key="frame" x="139" y="0.0" width="96.5" height="77.5"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPs-vd-F9a">
+                                                <rect key="frame" x="27.5" y="0.0" width="41.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap count: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4W-Xb-e9x">
+                                                <rect key="frame" x="1" y="28.5" width="94.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time left: 30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzY-Yk-sPA">
+                                                <rect key="frame" x="0.0" y="57" width="96.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bHf-RR-RnS">
+                                        <rect key="frame" x="112" y="117.5" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="UgL-re-syJ"/>
+                                            <constraint firstAttribute="width" constant="150" id="wx9-Jm-yuo"/>
+                                        </constraints>
+                                        <color key="tintColor" red="0.99977356195449829" green="0.20805975794792175" blue="0.0010024672374129295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="" cornerStyle="capsule"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="GJG-A6-GfA" eventType="touchUpInside" id="ML7-nh-m3b"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="iFl-7d-klD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bmf-vu-hlL" firstAttribute="leading" secondItem="iFl-7d-klD" secondAttribute="leading" constant="20" id="3OD-s0-OAp"/>
+                            <constraint firstItem="bmf-vu-hlL" firstAttribute="centerX" secondItem="iFl-7d-klD" secondAttribute="centerX" id="gVW-Au-3Xa"/>
+                            <constraint firstItem="iFl-7d-klD" firstAttribute="trailing" secondItem="bmf-vu-hlL" secondAttribute="trailing" constant="20" id="ili-I2-0KJ"/>
+                            <constraint firstItem="bmf-vu-hlL" firstAttribute="centerY" secondItem="iFl-7d-klD" secondAttribute="centerY" id="kp1-vH-Z3p"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Ixz-if-pFG"/>
+                    <connections>
+                        <outlet property="button" destination="bHf-RR-RnS" id="sHd-0J-xKN"/>
+                        <outlet property="label" destination="FPs-vd-F9a" id="ooU-t3-M59"/>
+                        <outlet property="tapCountLabel" destination="x4W-Xb-e9x" id="nnX-Nj-0dh"/>
+                        <outlet property="timeLeftLabel" destination="WzY-Yk-sPA" id="b3f-rM-lwN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="de2-W8-Zzz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2813.04347826087" y="83.705357142857139"/>
+        </scene>
+        <!--Club Joining View Controller-->
+        <scene sceneID="dLh-uM-W1l">
+            <objects>
+                <viewController storyboardIdentifier="ClubJoiningViewController" id="JVz-Kb-TXi" customClass="ClubJoiningViewController" customModule="BoardGameClub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nfi-qo-XTw">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="KWC-7J-kix">
+                                <rect key="frame" x="20" y="84" width="374" height="150"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join board game club" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3V-pC-OrW">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XLL-P8-UAR">
+                                        <rect key="frame" x="0.0" y="50" width="374" height="49"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Club name: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znd-kS-R3Z">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creator's nickname: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tAF-B8-8ia">
+                                                <rect key="frame" x="0.0" y="28.5" width="374" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8u-CS-ZXs">
+                                        <rect key="frame" x="0.0" y="119" width="374" height="31"/>
+                                        <color key="tintColor" red="0.99977356195449829" green="0.20805975794792175" blue="0.0010024672374129295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Join"/>
+                                        <connections>
+                                            <action selector="joinButtonTapped:" destination="JVz-Kb-TXi" eventType="touchUpInside" id="hef-Or-qmz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="m5O-Dm-VAv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="KWC-7J-kix" firstAttribute="top" secondItem="m5O-Dm-VAv" secondAttribute="top" constant="40" id="GLC-NC-EXD"/>
+                            <constraint firstItem="KWC-7J-kix" firstAttribute="centerX" secondItem="m5O-Dm-VAv" secondAttribute="centerX" id="Yfe-gh-prX"/>
+                            <constraint firstItem="KWC-7J-kix" firstAttribute="leading" secondItem="m5O-Dm-VAv" secondAttribute="leading" constant="20" id="e0m-he-N9B"/>
+                            <constraint firstItem="m5O-Dm-VAv" firstAttribute="trailing" secondItem="KWC-7J-kix" secondAttribute="trailing" constant="20" id="pvc-js-9LU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="clubNameLabel" destination="znd-kS-R3Z" id="JR0-BM-8zR"/>
+                        <outlet property="creatorNicknameLabel" destination="tAF-B8-8ia" id="2TF-G7-IKz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="APO-v2-Koa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3813.04347826087" y="389.73214285714283"/>
+        </scene>
+        <!--Club Creation View Controller-->
+        <scene sceneID="EVI-Cm-BqG">
+            <objects>
+                <viewController storyboardIdentifier="ClubCreationViewController" id="cy3-6o-GKp" customClass="ClubCreationViewController" customModule="BoardGameClub" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0K1-ef-E2X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="LW0-37-vwU">
+                                <rect key="frame" x="20" y="84" width="374" height="219"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create board game club" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dnz-tR-F3R">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CBK-AL-g9V">
+                                        <rect key="frame" x="0.0" y="50" width="374" height="118"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Club name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8al-EN-N0A">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Creator's nickname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6qq-gD-Gf3">
+                                                <rect key="frame" x="0.0" y="42" width="374" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Club url (whatsapp, telegram, viber)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UX3-r5-xJx">
+                                                <rect key="frame" x="0.0" y="84" width="374" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNg-a6-AMx">
+                                        <rect key="frame" x="0.0" y="188" width="374" height="31"/>
+                                        <color key="tintColor" red="0.99977356195449829" green="0.20805975794792175" blue="0.0010024672374129295" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Create"/>
+                                        <connections>
+                                            <action selector="createButtonTapped:" destination="cy3-6o-GKp" eventType="touchUpInside" id="CMX-42-ZRu"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xq5-X5-2ul"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="LW0-37-vwU" firstAttribute="top" secondItem="xq5-X5-2ul" secondAttribute="top" constant="40" id="4cR-2O-bP3"/>
+                            <constraint firstItem="xq5-X5-2ul" firstAttribute="trailing" secondItem="LW0-37-vwU" secondAttribute="trailing" constant="20" id="T9t-qb-Gml"/>
+                            <constraint firstItem="LW0-37-vwU" firstAttribute="leading" secondItem="xq5-X5-2ul" secondAttribute="leading" constant="20" id="a49-Lm-AcY"/>
+                            <constraint firstItem="LW0-37-vwU" firstAttribute="centerX" secondItem="xq5-X5-2ul" secondAttribute="centerX" id="hRI-zX-c0U"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="clubNameTextfield" destination="8al-EN-N0A" id="rkc-jd-ShV"/>
+                        <outlet property="clubUrlTextfield" destination="UX3-r5-xJx" id="pCa-HS-2wU"/>
+                        <outlet property="creatorNameTextfield" destination="6qq-gD-Gf3" id="cYP-Pa-eAH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x3d-gO-mWR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3813.04347826087" y="-289.28571428571428"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="questionmark.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
