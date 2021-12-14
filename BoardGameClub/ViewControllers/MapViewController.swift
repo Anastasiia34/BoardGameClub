@@ -40,20 +40,25 @@ class MapViewController: UIViewController, UIGestureRecognizerDelegate {
         geocoder.reverseGeocodeLocation(CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude), completionHandler: { [weak self] placemarks, error  in
             if (placemarks?.first?.ocean) == nil {
                 self?.userCoordinate = coordinate
-                self?.presentGameViewController(club: nil)
+                self?.presentClubCreatioinViewController()
             } else {
                 self?.showAlert(title: "You can't place a pin in the ocean", message: "Please choose another location")
             }
         })
     }
     
-    private func presentGameViewController(club: Club?) {
+    private func presentClubCreatioinViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "GameViewController") as! GameViewController
+        let vc = storyboard.instantiateViewController(withIdentifier: "ClubCreationViewController") as! ClubCreationViewController
         vc.delegate = self
+        present(vc, animated: true)
+    }
+    
+    private func presentClubJoiningViewController(club: Club) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ClubJoiningViewController") as! ClubJoiningViewController
         vc.club = club
-        let navVC = UINavigationController(rootViewController: vc)
-        present(navVC, animated: true)
+        present(vc, animated: true)
     }
     
     private func showAlert(title: String, message: String?) {
@@ -80,9 +85,9 @@ extension MapViewController: ClubCreationViewControllerDelegate {
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let selectedCoordinate = view.annotation?.coordinate
-        let club = clubs.filter { $0.coordinate.latitude == selectedCoordinate?.latitude && $0.coordinate.longitude == selectedCoordinate?.longitude }.first
-        
-        presentGameViewController(club: club)
+        if let club = clubs.filter({ $0.coordinate.latitude == selectedCoordinate?.latitude && $0.coordinate.longitude == selectedCoordinate?.longitude }).first {
+            presentClubJoiningViewController(club: club)
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
